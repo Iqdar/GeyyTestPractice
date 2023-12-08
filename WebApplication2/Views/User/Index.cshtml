@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication2.Models.User>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>Users</h2>
+
+@if (!Model.Any())
+{
+    <p>We have no user</p>
+}
+else{
+    <Table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td class="col-md-2" align="center">
+                        @Html.ActionLink("View", "Details", "User", new { id = user.Id }, null) |
+                        @Html.ActionLink("Edit", "EditUser", "User", new { id = user.Id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "User", new { id = user.Id }, null)
+                    </td>
+                </tr>
+                
+            }
+        </tbody>
+    </Table>
+}
